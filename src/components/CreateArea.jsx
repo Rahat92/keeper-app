@@ -31,7 +31,6 @@ function CreateArea(props) {
         <input autoFocus = "on" onChange = {traceInput} name="title" placeholder="Title" value = {letter.title} />
         <textarea onChange = {traceInput} name="content" placeholder="Take a note..." rows="3" value = {letter.content}/>
         <button onClick = {(event)=>{
-          
           props.listenButton(letter,event);
           word({
             title:"",
