@@ -5,19 +5,24 @@ import Note from "./Note";
 import CreateArea from "./CreateArea";
 
 function App() {
-	const [click,updateClick] = useState(false);
-	const [inputStatus,updateStatus] = useState(false);
 	const [ok,updateOk] = useState(false);
 	const [input,inputArray] = useState([
 		]);
 
 
+function seeChange(typeStatus){
+	if(typeStatus===true){
+		updateOk(false)
+		console.log("typing")
+	}else{
 
+		updateOk(true)
+	}
+
+}
 function addtoNote(letter,event){
-	updateClick(true);
 	event.preventDefault();
 	if(letter.title.length>0){
-		updateStatus(true);
 		updateOk(false);
 		inputArray(prev=>{
 			return( 
@@ -25,10 +30,9 @@ function addtoNote(letter,event){
 			) 
 			
 	});
-	}else{
+	}else if(letter.title.length === 0){
 		updateOk(true);
 	}
-
 }
   return (
     <div>
@@ -36,9 +40,10 @@ function addtoNote(letter,event){
       <CreateArea 
       	
       	listenButton = {addtoNote}
+      	trackChange = {seeChange}
       />
     {
-    	ok?<p>Please Enter a title Please</p>:null
+    	ok?<p style = {{color:"red",textDecoration:"underline"}}>আপনাকে অবশ্যই একটি টাইটেল লিখতে হবে!</p>:null
     }
     {
     	input.map((item,index)=>{
