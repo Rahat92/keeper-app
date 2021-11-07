@@ -38,6 +38,14 @@ function addtoNote(letter,event){
 		updateOk(true);
 	}
 }
+function itemToDelete(id){
+	inputArray(prev=>{
+
+		return prev.filter((item,index)=>{
+			return index!==id;
+		})
+	})
+}
   return (
     <div>
       <Header />
@@ -52,8 +60,13 @@ function addtoNote(letter,event){
     
     {
     	input.map((item,index)=>{
-    			return <Note id ={index} key={index} title={item.title} 
-    			content={item.content} />
+    			return <Note 
+    			id ={index} 
+    			key={index} 
+    			title={item.title} 
+    			content={item.content} 
+    			deleteItem = {itemToDelete}
+    			/>
     })
 
     }
