@@ -48,7 +48,11 @@ function CreateArea(props) {
             title:"",
             content:""
           });
-          updateTypeStatus(false)
+          if(letter.title.length>0){
+            updateTypeStatus(true)
+          }else{
+            updateTypeStatus(false)
+          }
       }
 
       } >Add</button>
