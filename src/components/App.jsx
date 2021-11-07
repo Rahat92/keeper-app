@@ -50,7 +50,7 @@ function itemToDelete(id){
     <div>
       <Header />
       {
-    	ok?<p style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে  হবে!</p>:null
+    	ok?<p style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে হবে!</p>:null
     }
       <CreateArea 
       	

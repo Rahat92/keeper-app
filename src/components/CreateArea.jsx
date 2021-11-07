@@ -1,40 +1,22 @@
 import React ,{useState} from "react";
 function CreateArea(props) {
-  const [typeStatus,updateTypeStatus] = useState(false);
+  const [typeStatus,updateTypeStatus] = useState(true);
 	const [letter,word] = useState({
       title : "",
       content : ""
   });
 
   function traceInput(event){
-  const name = event.target.name;
-  const input = event.target.value;
-  const value = {
-    title:input,
-    content:input
-  };
-  if(name === "title"){
-      word(prev=>{
+    const {name,value} = event.target;
+    if(name ==="title"&& value.length>0){
+      updateTypeStatus(true)
+    }
+    word(prev=>{
       return {
-        title:value.title,
-        content:prev.content
+        ...prev,
+        [name]:value
       }
     })
-    if(value.title.length>0){
-    updateTypeStatus(true);
-  }else if(value.title.length===0){ 
-    updateTypeStatus(false);
-  }
-  }else if(name === "content"){
-      word(prev=>{
-      return {
-        title:prev.title,
-        content:value.content
-      }
-    })
-    
-  }
-  
 }
   return (
     <div>{props.trackChange(typeStatus)}
