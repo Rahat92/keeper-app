@@ -1,5 +1,5 @@
 import React ,{useState,useEffect,useRef} from "react";
-
+import AddIcon from "@material-ui/icons/Add";
 function CreateArea(props) {
   const [click,setClick] = useState(true);
 
@@ -51,7 +51,7 @@ function CreateArea(props) {
           }
       }
 
-      } >Add</button>
+      } ><AddIcon/></button>
       </form>
     </div>
   );
