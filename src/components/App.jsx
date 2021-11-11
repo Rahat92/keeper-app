@@ -34,8 +34,6 @@ function addtoNote(letter,event){
 			) 
 			
 	});
-	}else if(letter.title.length === 0){
-		updateOk(true);
 	}
 }
 function itemToDelete(id){
