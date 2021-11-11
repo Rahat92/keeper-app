@@ -100,3 +100,7 @@ form button {
   cursor: pointer;
   outline: none;
 }
+
+.alertDiv{
+  height: 20px;
+}

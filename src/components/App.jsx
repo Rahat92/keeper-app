@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 const style = {
-	color:"red",
+	color:"black",
 	textDecoration:"underline",
 	textAlign:"center",
 	marginTop:"20px"
@@ -49,15 +49,16 @@ function itemToDelete(id){
   return (
     <div>
       <Header />
-      {
-    	ok?<p style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে হবে!</p>:null
-    }
       <CreateArea 
       	
       	listenButton = {addtoNote}
       	trackChange = {seeChange}
       />
-    
+    <div className = "alertDiv">
+    	{
+    	ok?<p id = "alert" style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে হবে!</p>:null
+    	}
+    </div>
     {
     	input.map((item,index)=>{
     			return <Note 

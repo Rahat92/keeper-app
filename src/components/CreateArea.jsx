@@ -1,5 +1,18 @@
-import React ,{useState} from "react";
+import React ,{useState,useEffect,useRef} from "react";
+
 function CreateArea(props) {
+  const [click,setClick] = useState(true);
+
+  const focusEffect = useRef(null);
+  
+  const addClick = ()=>{
+    setClick(prev=>{
+      return !prev
+    })
+  }
+  useEffect(()=>{
+      focusEffect.current.focus()
+  },[click])
   const [typeStatus,updateTypeStatus] = useState(true);
 	const [letter,word] = useState({
       title : "",
@@ -21,10 +34,11 @@ function CreateArea(props) {
   return (
     <div>{props.trackChange(typeStatus)}
       <form action = "">
-        <input autoFocus = "on" onChange = {traceInput}
+        <input ref = {focusEffect} onChange = {traceInput}
         name="title" placeholder="Title" value = {letter.title} />
         <textarea onChange = {traceInput} name="content" placeholder="Take a note..." rows="3" value = {letter.content}/>
         <button onClick = {(event)=>{
+          addClick();
           props.listenButton(letter,event);
           word({
             title:"",
