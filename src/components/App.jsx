@@ -1,8 +1,8 @@
-import React , {useState} from "react";
+import React , {useState,useRef,useEffect} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
-import CreateArea from "./CreateArea";
+import ForwardArea from "./CreateArea";
 const style = {
 	color:"black",
 	textDecoration:"underline",
@@ -10,6 +10,14 @@ const style = {
 	marginTop:"20px"
 }
 function App() {
+	const [Click,updateClick] = useState(true);
+  const AfterClick = useRef();
+  function afterClick(){
+    updateClick(prev=>!Click)
+  }
+  useEffect(()=>{
+    AfterClick.current.focus();
+  },[Click])
 	const [ok,updateOk] = useState(false);
 	const [input,inputArray] = useState([
 		]);
@@ -47,8 +55,9 @@ function itemToDelete(id){
   return (
     <div>
       <Header />
-      <CreateArea 
-      	
+      <ForwardArea 
+      	ref = {AfterClick}
+      	afterClick = {afterClick}
       	listenButton = {addtoNote}
       	trackChange = {seeChange}
       />

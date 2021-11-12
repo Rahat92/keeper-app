@@ -1,18 +1,7 @@
 import React ,{useState,useEffect,useRef} from "react";
 import AddIcon from "@material-ui/icons/Add";
-function CreateArea(props) {
-  const [click,setClick] = useState(true);
-
-  const focusEffect = useRef(null);
+function CreateArea(props,ref) {
   
-  const addClick = ()=>{
-    setClick(prev=>{
-      return !prev
-    })
-  }
-  useEffect(()=>{
-      focusEffect.current.focus()
-  },[click])
   const [typeStatus,updateTypeStatus] = useState(true);
 	const [letter,word] = useState({
       title : "",
@@ -34,19 +23,17 @@ function CreateArea(props) {
   return (
     <div>{props.trackChange(typeStatus)}
       <form action = "">
-        <input ref = {focusEffect} onChange = {traceInput}
+        <input ref = {ref} onChange = {traceInput}
         name="title" placeholder="Title" value = {letter.title} />
         <textarea onChange = {traceInput} name="content" placeholder="Take a note..." rows="3" value = {letter.content}/>
         <button onClick = {(event)=>{
-          addClick();
+          props.afterClick();
           props.listenButton(letter,event);
           word({
             title:"",
             content:""
           });
-          if(letter.title.length>0){
-            updateTypeStatus(true)
-          }else{
+          if(letter.title.length===0){
             updateTypeStatus(false)
           }
       }
@@ -57,5 +44,5 @@ function CreateArea(props) {
   );
 
 }
-
-export default CreateArea;
+const ForwardArea = React.forwardRef(CreateArea)
+export default ForwardArea;
