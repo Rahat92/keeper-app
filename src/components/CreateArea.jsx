@@ -21,6 +21,7 @@ function CreateArea(props,ref) {
     })
 }
   return (
+
     <div>{props.trackChange(typeStatus)}
       <form action = "">
         <input ref = {ref} onChange = {traceInput}
@@ -29,10 +30,19 @@ function CreateArea(props,ref) {
         <button onClick = {(event)=>{
           props.afterClick();
           props.listenButton(letter,event);
-          word({
-            title:"",
-            content:""
-          });
+          if(letter.content.length>0&&letter.title.length===0){
+            word(prev=>{
+              return {
+                title:"",
+                content:prev.content
+              }
+            })
+          }else{
+            word({
+              title:"",
+              content:""
+            })
+          }
           if(letter.title.length===0){
             updateTypeStatus(false)
           }

@@ -10,6 +10,8 @@ const style = {
 	marginTop:"20px"
 }
 function App() {
+	const [clickdel,updateClickdel] = useState(false);
+	const [clickDel,updateClickDel] = useState(false);
 	const [Click,updateClick] = useState(true);
   const AfterClick = useRef();
   function afterClick(){
@@ -17,7 +19,7 @@ function App() {
   }
   useEffect(()=>{
     AfterClick.current.focus();
-  },[Click])
+  },[Click,clickDel])
 	const [ok,updateOk] = useState(false);
 	const [input,inputArray] = useState([
 		]);
@@ -33,6 +35,7 @@ function seeChange(typeStatus){
 
 }
 function addtoNote(letter,event){
+	updateClickdel(false);
 	event.preventDefault();
 	if(letter.title.length>0){
 		updateOk(false);
@@ -45,6 +48,10 @@ function addtoNote(letter,event){
 	}
 }
 function itemToDelete(id){
+	updateClickdel(true);
+	updateClickDel(prev=>{
+		return !prev
+	});
 	inputArray(prev=>{
 
 		return prev.filter((item,index)=>{
@@ -55,7 +62,7 @@ function itemToDelete(id){
   return (
     <div>
       <Header />
-      <ForwardArea 
+      <ForwardArea
       	ref = {AfterClick}
       	afterClick = {afterClick}
       	listenButton = {addtoNote}
@@ -63,7 +70,7 @@ function itemToDelete(id){
       />
     <div className = "alertDiv">
     	{
-    	ok?<p id = "alert" style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে হবে!</p>:null
+    	!clickdel&&ok?<p id = "alert" style = {style}>আপনাকে অবশ্যই একটি টাইটেল দিতে হবে!</p>:null
     	}
     </div>
     {
