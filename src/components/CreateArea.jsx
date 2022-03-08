@@ -1,6 +1,6 @@
 import React ,{useState,useEffect,useRef} from "react";
 import AddIcon from "@material-ui/icons/Add";
-function CreateArea(props,ref) {
+function CreateArea(props,rref) {
   
   const [typeStatus,updateTypeStatus] = useState(true);
 	const [letter,word] = useState({
@@ -24,7 +24,7 @@ function CreateArea(props,ref) {
 
     <div>{props.trackChange(typeStatus)}
       <form action = "">
-        <input ref = {ref} onChange = {traceInput}
+        <input ref = {rref} onChange = {traceInput}
         name="title" placeholder="Title" value = {letter.title} />
         <textarea onChange = {traceInput} name="content" placeholder="Take a note..." rows="3" value = {letter.content}/>
         <button onClick = {(event)=>{
